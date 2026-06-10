@@ -1,4 +1,4 @@
-# Garage 1.0
+# Garage 0.1
 
 A console application that simulates a garage management system — park vehicles, retrieve them, search by properties, and more. Built as part of the Lexicon Fullstack .NET & AI program (Övning 5).
 
@@ -44,34 +44,35 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ### Architecture & Classes
 
-- [ ] Create `Vehicle` class with shared properties (registration number, color, wheels, etc.)
+- [x] Create `Vehicle` class with shared properties (registration number, color, wheels, etc.)
 - [ ] Registration number is unique
 - [ ] Create subclass `Airplane` with own property (e.g. Number of Engines)
-- [ ] Create subclass `Motorcycle` with own property (e.g. Cylinder volume)
-- [ ] Create subclass `Car` with own property (e.g. Fueltype)
+- [x] Create subclass `Motorcycle` with own property (e.g. Handlebar width)
+- [x] Create subclass `Car` with own property (e.g. Number of doors)
 - [ ] Create subclass `Bus` with own property (e.g. Number of seats)
 - [ ] Create subclass `Boat` with own property (e.g. Length)
 
 ### Garage Class
 
-- [ ] Implement `Garage<T>` as generic class
-- [ ] Add generic constraint (`where T : ...`)
+- [x] Implement `Garage<T>` as generic class
+- [x] Add generic constraint (`where T : ...`)
 - [ ] Implement `IEnumerable<T>` (support `foreach`)
-- [ ] Internal storage as **private array** (⚠️ NOT `List<Vehicle>`)
-- [ ] Capacity set via constructor argument
+- [x] Internal storage as **private array** (⚠️ NOT `List<Vehicle>`)
+- [x] Capacity set via constructor argument
 
 ### Interfaces
 
 - [ ] Create `IUI`
 - [ ] Create `IHandler`
-- [ ] Create `IVehicle`
+- [x] Create `IVehicle`
+- [x] Create `IGarage`
 - [ ] `GarageHandler` — abstraction layer between UI and Garage
 
 ### Functionality
 
 - [ ] List all parked vehicles
 - [ ] List vehicle types and count of each
-- [ ] Add vehicles to the garage
+- [x] Add vehicles to the garage
 - [ ] Remove vehicles from the garage
 - [ ] Seed garage with vehicles on startup
 - [ ] Find vehicle by registration number (case-insensitive)
@@ -106,8 +107,8 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ```bash
 # clone
-git clone https://github.com/xavidiaz/dotnet-2026-vt-lexicon.git
-cd dotnet-2026-vt-lexicon/Garage
+git clone https://github.com/xavidiaz/Ovning_5-Garage.git
+cd Ovning_5-Garage
 
 # run
 dotnet run
