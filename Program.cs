@@ -1,16 +1,9 @@
-﻿
-namespace Ovning_5_Garage
+﻿namespace Ovning_5_Garage;
+
+class Program
 {
-
-  public class Program
-  {
-    public static void Main()
+    static void Main(string[] args)
     {
-      Car car = new("Volvo", "2345-DGF", FuelType.Gasoline_95);
-      Motorcycle bike = new("Honda", "4323-TRE", CylinderVolume.CC500);
-
+        Console.WriteLine("Hello, World!");
     }
-
-  }
 }
-
