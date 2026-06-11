@@ -70,12 +70,12 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ### Functionality
 
-- [ ] List all parked vehicles
-- [ ] List vehicle types and count of each
+- [x] List all parked vehicles
+- [x] List vehicle types and count of each
 - [x] Add vehicles to the garage
-- [ ] Remove vehicles from the garage
-- [ ] Seed garage with vehicles on startup
-- [ ] Find vehicle by registration number (case-insensitive)
+- [x] Remove vehicles from the garage
+- [x] Seed garage with vehicles on startup
+- [x] Find vehicle by registration number (case-insensitive)
 - [ ] Search vehicles by one or more `Vehicle` properties
 - [ ] User feedback on success / failure with reason
 
