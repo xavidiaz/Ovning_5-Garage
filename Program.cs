@@ -13,5 +13,7 @@ class Program
         }
 
         garage.UnparkVehicle(1001u);
+
+        GarageHandler.Hello();
     }
 }

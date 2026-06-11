@@ -66,7 +66,7 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [ ] Create `IHandler`
 - [x] Create `IVehicle`
 - [x] Create `IGarage`
-- [ ] `GarageHandler` — abstraction layer between UI and Garage
+- [x] `GarageHandler` — abstraction layer between UI and Garage (stub)
 
 ### Functionality
 
@@ -75,7 +75,7 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [x] Add vehicles to the garage
 - [x] Remove vehicles from the garage
 - [x] Seed garage with vehicles on startup
-- [x] Find vehicle by registration number (case-insensitive)
+- [x] Find vehicle by registration number
 - [ ] Search vehicles by one or more `Vehicle` properties
 - [ ] User feedback on success / failure with reason
 
@@ -102,6 +102,16 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [ ] Vehicles take different space (car = 1, boat = 2, airplane = 3, motorcycle = 1/3)
 - [ ] Only show vehicles that fit when parking
 - [ ] Read garage size from configuration
+
+## Known Issues / TODO
+
+- **Null-hantering saknas** — GarageHandler-metoder kontrollerar inte om `Garage` är null innan anrop, kan krascha om `CreateGarage` inte anropats
+- **Console.WriteLine i Garage** — bör flyttas till UI-lagret; Garage ska returnera data, inte skriva till konsolen
+- **Access modifiers** — flera klasser och properties saknar `public` där det behövs
+- **IGarage-interfacet** är inte implementerat av Garage-klassen ännu
+- **IEnumerable<T>** inte implementerat på Garage ännu
+- **Stavning** — `Motorcicle` bör vara `Motorcycle`
+- **Registreringsnummer** — specen kräver string (case-insensitive), nuvarande implementation använder uint
 
 ## Getting Started
 

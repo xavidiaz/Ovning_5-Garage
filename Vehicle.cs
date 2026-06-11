@@ -1,6 +1,6 @@
 namespace Ovning_5_Garage;
 
-abstract class Vehicle : IVehicle
+public abstract class Vehicle : IVehicle
 {
     public string Brand { get; }
     public uint Id { get; }
