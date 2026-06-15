@@ -1,19 +1,12 @@
 ﻿namespace Ovning_5_Garage;
 
-class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        Garage<Vehicle> garage = new("P-Central", 4);
-        garage.Seed();
-
-        foreach (IGrouping<string, Vehicle> VehicleType in garage.VehicleTypes)
-        {
-            Console.WriteLine($"{VehicleType.Key}: {VehicleType.Count()}");
-        }
-
-        garage.UnparkVehicle(1001u);
-
-        GarageHandler.Hello();
+        Car volvo = new("volvo", "TWE 4353", 5);
+        Console.WriteLine(volvo);
+        Motorcycle yamaha = new("yamaha", "RDW 2443", 85);
+        Console.WriteLine(yamaha);
     }
 }

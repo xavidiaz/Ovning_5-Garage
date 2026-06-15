@@ -44,38 +44,38 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ### Architecture & Classes
 
-- [x] Create `Vehicle` class with shared properties (registration number, color, wheels, etc.)
+- [ ] Create `Vehicle` class with shared properties (registration number, color, wheels, etc.)
 - [ ] Registration number is unique
 - [ ] Create subclass `Airplane` with own property (e.g. Number of Engines)
-- [x] Create subclass `Motorcycle` with own property (e.g. Handlebar width)
-- [x] Create subclass `Car` with own property (e.g. Number of doors)
+- [ ] Create subclass `Motorcycle` with own property (e.g. Handlebar width)
+- [ ] Create subclass `Car` with own property (e.g. Number of doors)
 - [ ] Create subclass `Bus` with own property (e.g. Number of seats)
 - [ ] Create subclass `Boat` with own property (e.g. Length)
 
 ### Garage Class
 
-- [x] Implement `Garage<T>` as generic class
-- [x] Add generic constraint (`where T : ...`)
+- [ ] Implement `Garage<T>` as generic class
+- [ ] Add generic constraint (`where T : ...`)
 - [ ] Implement `IEnumerable<T>` (support `foreach`)
-- [x] Internal storage as **private array** (⚠️ NOT `List<Vehicle>`)
-- [x] Capacity set via constructor argument
+- [ ] Internal storage as **private array** (⚠️ NOT `List<Vehicle>`)
+- [ ] Capacity set via constructor argument
 
 ### Interfaces
 
 - [ ] Create `IUI`
 - [ ] Create `IHandler`
-- [x] Create `IVehicle`
-- [x] Create `IGarage`
-- [x] `GarageHandler` — abstraction layer between UI and Garage (stub)
+- [ ] Create `IVehicle`
+- [ ] Create `IGarage`
+- [ ] `GarageHandler` — abstraction layer between UI and Garage (stub)
 
 ### Functionality
 
-- [x] List all parked vehicles
-- [x] List vehicle types and count of each
-- [x] Add vehicles to the garage
-- [x] Remove vehicles from the garage
-- [x] Seed garage with vehicles on startup
-- [x] Find vehicle by registration number
+- [ ] List all parked vehicles
+- [ ] List vehicle types and count of each
+- [ ] Add vehicles to the garage
+- [ ] Remove vehicles from the garage
+- [ ] Seed garage with vehicles on startup
+- [ ] Find vehicle by registration number
 - [ ] Search vehicles by one or more `Vehicle` properties
 - [ ] User feedback on success / failure with reason
 
@@ -104,14 +104,6 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [ ] Read garage size from configuration
 
 ## Known Issues / TODO
-
-- **Null-hantering saknas** — GarageHandler-metoder kontrollerar inte om `Garage` är null innan anrop, kan krascha om `CreateGarage` inte anropats
-- **Console.WriteLine i Garage** — bör flyttas till UI-lagret; Garage ska returnera data, inte skriva till konsolen
-- **Access modifiers** — flera klasser och properties saknar `public` där det behövs
-- **IGarage-interfacet** är inte implementerat av Garage-klassen ännu
-- **IEnumerable<T>** inte implementerat på Garage ännu
-- **Stavning** — `Motorcicle` bör vara `Motorcycle`
-- **Registreringsnummer** — specen kräver string (case-insensitive), nuvarande implementation använder uint
 
 ## Getting Started
 
