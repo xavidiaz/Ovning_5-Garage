@@ -81,10 +81,10 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ### Console UI
 
-- [ ] Main menu with navigation to all functionality
-- [ ] Create garage with user-specified size
-- [ ] Quit application from menu
-- [ ] Robust input validation — no crashes on bad input
+- [x] Main menu with navigation to all functionality
+- [x] Create garage with user-specified size
+- [x] Quit application from menu
+- [x] Robust input validation — no crashes on bad input (generic `ReadInput<T>`)
 
 ### Unit Testing
 
@@ -105,15 +105,17 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ## Known Issues / TODO
 
-- **Handler null-checks** — `ParkVehicle`, `UnparkVehicle`, `FindVehicle` saknar null-check på `_garage`
-- **Handler.FindVehicle** — returnerar void, bör returnera `(bool, int)`
-- **Handler.ParkVehicle** — tar `Vehicle?`, bör ta `Vehicle`
+- **ConsoleUI saknar constructor** — `_handler` initieras aldrig, behöver `public ConsoleUI(Handler handler)`
+- **Program.Main** — skapar garage direkt istället för via Handler/UI
+- **Handler null-checks** — flera metoder saknar null-check på `_garage`
 - **Handler.SeedGarage** — null-check gör inget, bör ha `return`
+- **Handler.ParkVehicle** — tar `Vehicle?`, bör ta `Vehicle`
+- **SearchVehicles val 1 & 2** — `ReadInput` anropas i filtret, bör läsas innan
 - **Console.WriteLine i Garage** — bör flyttas till UI-lagret
 - **IVehicle** — saknar `Color` och `NumerOfWheels`, behövs för sökning via generisk `T`
 - **Airplane, Bus, Boat** — ej implementerade än
 - **Registreringsnummer unikhet** — ingen kontroll vid parkering
-- **Handler** — bör flyttas till egen fil (Handler.cs)
+- **Stavning** — `NumerOfWheels` bör vara `NumberOfWheels`
 
 ## Getting Started
 
