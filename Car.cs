@@ -4,8 +4,8 @@ public class Car : Vehicle
 {
     uint NumberOfDoors { get; }
 
-    public Car(string brand, string id, uint numberOfDoors)
-        : base(brand, id)
+    public Car(string brand, string id, string color, uint numberOfWheels, uint numberOfDoors)
+        : base(brand, id, color, numberOfWheels)
     {
         NumberOfDoors = numberOfDoors;
     }
