@@ -10,7 +10,7 @@ The application lets users manage a garage with a text-based UI. Vehicles of dif
 
 ```
 UI (ConsoleUI)
-  └── GarageHandler
+  └── Handler
         └── Garage<T>
               └── Vehicle (abstract)
                     ├── Car
@@ -66,7 +66,7 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [ ] Create `IHandler`
 - [x] Create `IVehicle`
 - [ ] Create `IGarage`
-- [ ] `GarageHandler` — abstraction layer between UI and Garage
+- [x] `Handler` — abstraction layer between UI and Garage
 
 ### Functionality
 
@@ -105,10 +105,15 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ## Known Issues / TODO
 
+- **Handler null-checks** — `ParkVehicle`, `UnparkVehicle`, `FindVehicle` saknar null-check på `_garage`
+- **Handler.FindVehicle** — returnerar void, bör returnera `(bool, int)`
+- **Handler.ParkVehicle** — tar `Vehicle?`, bör ta `Vehicle`
+- **Handler.SeedGarage** — null-check gör inget, bör ha `return`
 - **Console.WriteLine i Garage** — bör flyttas till UI-lagret
-- **IVehicle** saknar `Color` och `NumerOfWheels` — behövs för sökning via generisk `T`
+- **IVehicle** — saknar `Color` och `NumerOfWheels`, behövs för sökning via generisk `T`
 - **Airplane, Bus, Boat** — ej implementerade än
 - **Registreringsnummer unikhet** — ingen kontroll vid parkering
+- **Handler** — bör flyttas till egen fil (Handler.cs)
 
 ## Getting Started
 
