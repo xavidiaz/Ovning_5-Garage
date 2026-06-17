@@ -1,4 +1,5 @@
-﻿namespace Ovning_5_Garage;
+﻿//
+namespace Ovning_5_Garage;
 
 public class Program
 {

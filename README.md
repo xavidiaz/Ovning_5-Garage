@@ -9,6 +9,19 @@ The application lets users manage a garage with a text-based UI. Vehicles of dif
 ## Architecture
 
 ```
+Ovning_5-Garage/
+├── Ovning_5-Garage/          ← main project
+│   ├── Program.cs
+│   ├── Vehicle.cs, Car.cs, Motorcycle.cs
+│   ├── Garage.cs
+│   ├── Handler.cs
+│   ├── ConsoleUI.cs
+│   └── IVehicle.cs
+└── Ovning_5-Garage.Tests/    ← test project (xUnit v3)
+    └── GarageTest.cs
+```
+
+```
 UI (ConsoleUI)
   └── Handler
         └── Garage<T>
@@ -28,17 +41,6 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - Implements `IEnumerable<T>` for `foreach` support
 - Capacity is set at instantiation via the constructor
 - Registration numbers are unique and searched case-insensitively
-
-## Features
-
-- List all parked vehicles
-- List vehicle types with count
-- Add / remove vehicles
-- Seed garage with vehicles on startup
-- Find vehicle by registration number (case-insensitive)
-- Search by one or more `Vehicle` properties (color, wheels, type, etc.)
-- User feedback on all actions (success / failure with reason)
-- Robust input validation — no crashes on bad input
 
 ## Progress
 
@@ -88,10 +90,10 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ### Unit Testing
 
-- [ ] Create separate test project
-- [ ] Test public methods of `Garage<T>`
-- [ ] Follow Arrange → Act → Assert
-- [ ] Naming: `MethodName_StateUnderTest_ExpectedBehavior`
+- [x] Create separate test project (xUnit v3)
+- [x] Test public methods of `Garage<T>` (started)
+- [x] Follow Arrange → Act → Assert
+- [x] Naming: `MethodName_StateUnderTest_ExpectedBehavior`
 
 ### Extra (not required)
 
@@ -105,17 +107,17 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ## Known Issues / TODO
 
-- **ConsoleUI saknar constructor** — `_handler` initieras aldrig, behöver `public ConsoleUI(Handler handler)`
+- **ConsoleUI** — saknar constructor som tar Handler
 - **Program.Main** — skapar garage direkt istället för via Handler/UI
 - **Handler null-checks** — flera metoder saknar null-check på `_garage`
-- **Handler.SeedGarage** — null-check gör inget, bör ha `return`
-- **Handler.ParkVehicle** — tar `Vehicle?`, bör ta `Vehicle`
+- **Handler.SeedGarage** — null-check gör inget
 - **SearchVehicles val 1 & 2** — `ReadInput` anropas i filtret, bör läsas innan
 - **Console.WriteLine i Garage** — bör flyttas till UI-lagret
 - **IVehicle** — saknar `Color` och `NumerOfWheels`, behövs för sökning via generisk `T`
-- **Airplane, Bus, Boat** — ej implementerade än
+- **Airplane, Bus, Boat** — ej implementerade
 - **Registreringsnummer unikhet** — ingen kontroll vid parkering
 - **Stavning** — `NumerOfWheels` bör vara `NumberOfWheels`
+- **Fler tester behövs** — UnparkVehicle, FindVehicle, IsFull, SearchVehicles
 
 ## Getting Started
 
@@ -125,15 +127,17 @@ git clone https://github.com/xavidiaz/Ovning_5-Garage.git
 cd Ovning_5-Garage
 
 # run
+cd Ovning_5-Garage
 dotnet run
 
 # test
+cd Ovning_5-Garage.Tests
 dotnet test
 ```
 
 ## Testing
 
-Unit tests live in a separate test project and cover the public methods of `Garage<T>`.
+Unit tests use **xUnit v3** and live in a separate test project. Tests cover the public methods of `Garage<T>`.
 
 Tests follow the **Arrange → Act → Assert** pattern with descriptive names:
 
@@ -143,8 +147,8 @@ MethodName_StateUnderTest_ExpectedBehavior
 
 ## Tech
 
-- C# / .NET
-- xUnit (testing)
+- C# / .NET 10
+- xUnit v3 (testing)
 - Console application
 - Developed in Neovim + dotnet CLI on Arch Linux (Omarchy)
 
