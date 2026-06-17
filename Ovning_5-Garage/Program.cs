@@ -1,14 +1,16 @@
-﻿//
-namespace Ovning_5_Garage;
+﻿namespace Ovning_5_Garage;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        Garage<Vehicle> park = new("Park", 50);
-        park.Seed();
+        // 1. Initialize the central handler/orchestrator
+        Handler handler = new Handler();
 
-        ConsoleUI ui = new();
+        // 2. Pass the handler into the ConsoleUI constructor
+        ConsoleUI ui = new ConsoleUI(handler);
+
+        // 3. Start the main user interface loop
         ui.Run();
     }
 }

@@ -5,4 +5,5 @@ public interface IVehicle
 {
     string Brand { get; }
     string Id { get; }
+    string Color { get; }
 }

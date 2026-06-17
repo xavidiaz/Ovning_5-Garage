@@ -18,7 +18,9 @@ Ovning_5-Garage/
 │   ├── ConsoleUI.cs
 │   └── IVehicle.cs
 └── Ovning_5-Garage.Tests/    ← test project (xUnit v3)
-    └── GarageTest.cs
+    ├── GarageTest.cs
+    ├── HandlerTest.cs
+    └── ConsoleUITest.cs
 ```
 
 ```
@@ -33,14 +35,16 @@ UI (ConsoleUI)
                     └── Boat
 ```
 
-Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never talks directly to the `Garage` class.
+Interfaces (`IVehicle`) decouple the layers so the UI never talks directly to the `Garage` class.
 
 ## Key Design Decisions
 
 - `Garage<T>` is a generic collection with a type constraint, backed by a **private array** (not `List<T>`)
 - Implements `IEnumerable<T>` for `foreach` support
 - Capacity is set at instantiation via the constructor
-- Registration numbers are unique and searched case-insensitively
+- Registration numbers searched case-insensitively
+- `InternalsVisibleTo` used for testing internal members
+- Primary constructor used in `ConsoleUI`
 
 ## Progress
 
@@ -79,7 +83,7 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [x] Seed garage with vehicles on startup
 - [x] Find vehicle by registration number (case-insensitive)
 - [x] Search vehicles by one or more `Vehicle` properties (`SearchVehicles` with `Func<T, bool>`)
-- [ ] User feedback on success / failure with reason
+- [x] User feedback on success / failure with reason
 
 ### Console UI
 
@@ -87,11 +91,15 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 - [x] Create garage with user-specified size
 - [x] Quit application from menu
 - [x] Robust input validation — no crashes on bad input (generic `ReadInput<T>`)
+- [x] Primary constructor with Handler dependency
+- [x] Null-safe vehicle type handling in ParkVehicle
 
 ### Unit Testing
 
 - [x] Create separate test project (xUnit v3)
-- [x] Test public methods of `Garage<T>` (started)
+- [x] Test public methods of `Garage<T>`
+- [x] Test `Handler` methods
+- [x] Test `ConsoleUI` with simulated input/output
 - [x] Follow Arrange → Act → Assert
 - [x] Naming: `MethodName_StateUnderTest_ExpectedBehavior`
 
@@ -107,17 +115,12 @@ Interfaces (`IUI`, `IHandler`, `IVehicle`) decouple the layers so the UI never t
 
 ## Known Issues / TODO
 
-- **ConsoleUI** — saknar constructor som tar Handler
-- **Program.Main** — skapar garage direkt istället för via Handler/UI
-- **Handler null-checks** — flera metoder saknar null-check på `_garage`
-- **Handler.SeedGarage** — null-check gör inget
-- **SearchVehicles val 1 & 2** — `ReadInput` anropas i filtret, bör läsas innan
-- **Console.WriteLine i Garage** — bör flyttas till UI-lagret
-- **IVehicle** — saknar `Color` och `NumerOfWheels`, behövs för sökning via generisk `T`
 - **Airplane, Bus, Boat** — ej implementerade
 - **Registreringsnummer unikhet** — ingen kontroll vid parkering
 - **Stavning** — `NumerOfWheels` bör vara `NumberOfWheels`
-- **Fler tester behövs** — UnparkVehicle, FindVehicle, IsFull, SearchVehicles
+- **IVehicle** — saknar `Color` och `NumerOfWheels`, behövs för sökning via generisk `T`
+- **Console.WriteLine i Garage** — bör flyttas till UI-lagret
+- **SearchVehicles val 1 & 2** — `ReadInput` anropas i filtret, bör läsas innan
 
 ## Getting Started
 
@@ -137,7 +140,12 @@ dotnet test
 
 ## Testing
 
-Unit tests use **xUnit v3** and live in a separate test project. Tests cover the public methods of `Garage<T>`.
+Unit tests use **xUnit v3** and live in a separate test project.
+
+Test coverage:
+- **GarageTests** (12 tests) — ParkVehicle, UnparkVehicle, FindVehicle, SearchVehicles, VehicleCount, FirstEmptySpace recycling, case-insensitive search
+- **HandlerTests** (7 tests) — CreateGarage, ParkVehicle, UnparkVehicle, ListVehicles, SearchVehicles, ListVehicleTypes, SeedGarage
+- **ConsoleUITests** (5 tests) — menu exit, create garage, invalid input retry, park vehicle flow, search by color
 
 Tests follow the **Arrange → Act → Assert** pattern with descriptive names:
 

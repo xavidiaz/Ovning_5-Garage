@@ -24,6 +24,9 @@
   <ItemGroup>
     <ProjectReference Include="../Ovning_5-Garage/Ovning_5-Garage.csproj" />
   </ItemGroup>
+<ItemGroup>
+  <InternalsVisibleTo Include="Ovning_5_Garage.Tests" />
+</ItemGroup>
 
 </Project>
 

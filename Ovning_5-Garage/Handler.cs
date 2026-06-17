@@ -12,16 +12,26 @@ public class Handler
 
     public void ParkVehicle(Vehicle? vehicle)
     {
+        if (_garage == null)
+            return;
+        if (vehicle == null)
+            return;
+
         _garage.ParkVehicle(vehicle);
     }
 
     public void UnparkVehicle(string id)
     {
+        if (_garage == null)
+            return;
+
         _garage.UnparkVehicle(id);
     }
 
     public (bool, int) FindVehicle(string id)
     {
+        if (_garage == null)
+            return (false, -1);
         return _garage.FindVehicle(id);
     }
 
@@ -48,7 +58,8 @@ public class Handler
 
     public void SeedGarage()
     {
-        if (_garage == null) { }
+        if (_garage == null)
+            return;
 
         _garage.Seed();
     }

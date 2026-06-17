@@ -2,9 +2,9 @@
 namespace Ovning_5_Garage;
 
 // Constructor: ta emot handler
-public class ConsoleUI
+public class ConsoleUI(Handler handler)
 {
-    private Handler _handler;
+    Handler _handler = handler;
 
     // Run() — huvudloop
     public void Run()
@@ -16,7 +16,7 @@ public class ConsoleUI
             Console.Clear();
             ShowMenu();
             Console.Write("Välj ett alternativ: ");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine() ?? "";
 
             switch (input)
             {
@@ -82,7 +82,7 @@ public class ConsoleUI
         string brand = ReadInput<string>("Ange brand: ");
         string id = ReadInput<string>("Ange registreringsnummer: ");
         string color = ReadInput<string>("Ange färg: ");
-        Vehicle vehicle = vehicleType.ToLower() switch
+        Vehicle? vehicle = vehicleType.ToLower() switch
         {
             "car" => new Car(
                 brand,
@@ -98,8 +98,13 @@ public class ConsoleUI
                 ReadInput<uint>("Antal hjul: "),
                 ReadInput<uint>("Styrbredd: ")
             ),
-            _ => throw new ArgumentException("Okänd fordonstyp"),
+            _ => null,
         };
+        if (vehicle == null)
+        {
+            Console.WriteLine("Okänd fordonstyp. Parkering avbruten.");
+            return;
+        }
         _handler.ParkVehicle(vehicle);
     }
 
@@ -174,9 +179,17 @@ public class ConsoleUI
         {
             Console.Write(prompt);
             string? answer = Console.ReadLine();
+
+            // Check for empty inputs from the user
+            if (string.IsNullOrWhiteSpace(answer))
+            {
+                Console.WriteLine("Inmatningen får inte vara tom, försök igen.");
+                continue;
+            }
+
             try
             {
-                return (T)Convert.ChangeType(answer, typeof(T));
+                return (T)Convert.ChangeType(answer, typeof(T))!;
             }
             catch
             {

@@ -1,5 +1,7 @@
-//
 using System.Collections;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Ovning_5-Garage.Tests")]
 
 namespace Ovning_5_Garage;
 
@@ -15,14 +17,14 @@ public class Garage<T> : IEnumerable<T>
     }
 
     // T?[] List { get; }
-    uint Count { get; set; }
-    bool IsFull => Count >= Capacity;
+    internal uint VehicleCount { get; set; }
+    bool IsFull => VehicleCount >= Capacity;
 
     public Garage(string name, uint capacity)
     {
         Name = name;
         Capacity = capacity;
-        Count = 0;
+        VehicleCount = 0;
         _list = new T?[capacity];
     }
 
@@ -52,7 +54,7 @@ public class Garage<T> : IEnumerable<T>
         else
         {
             _list[FirstEmptySpace()] = vehicle;
-            Count++;
+            VehicleCount++;
         }
     }
 
@@ -79,6 +81,7 @@ public class Garage<T> : IEnumerable<T>
         if (isParked)
         {
             _list[index] = default;
+            VehicleCount--;
         }
     }
 
