@@ -1,14 +1,23 @@
-namespace Ovning_5_Garage;
+namespace Garage;
 
-class Car : Vehicle
+public class Car : Vehicle
 {
-    uint NumberOfDoors { get; set; }
+    public uint NumberOfDoors { get; }
 
-    public Car(string brand, uint id)
-        : base(brand, id) { }
-
-    public void SetNumberOfDoors(uint numberOfDoors)
+    public Car(
+        string registrationNumber,
+        string color,
+        uint numberOfWheels,
+        string brand,
+        uint numberOfDoors
+    )
+        : base(registrationNumber, color, numberOfWheels, brand)
     {
         NumberOfDoors = numberOfDoors;
+    }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()}, {NumberOfDoors} doors ";
     }
 }

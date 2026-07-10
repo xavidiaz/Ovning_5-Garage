@@ -1,16 +1,6 @@
 namespace Garage;
 
-public interface IVehicle
-{
-    string RegistrationNumber { get; }
-    string Color { get; }
-    uint NumberOfWheels { get; }
-    string Brand { get; }
-
-    string ToString();
-}
-
-public abstract class Vehicle : IVehicle
+abstract class Vehicle
 {
     public string RegistrationNumber { get; }
     public string Color { get; }
