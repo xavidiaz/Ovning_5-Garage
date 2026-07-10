@@ -4,29 +4,13 @@ public class Program()
 {
     public static void Main()
     {
-        Garage<Vehicle> parking = new(3);
+        GarageHandler _handler = new GarageHandler("P-central", 32);
 
-        parking.ParkVehicle(new Car("123qwe", "#ffffff", 4, "Volvo", 5));
-        parking.ParkVehicle(new Car("543qwe", "#ff0", 4, "Volvo", 5));
-        parking.ParkVehicle(new Motorcycle("321ewq", "#123", 2, "Yamaha", 54));
+        _handler.Seed();
 
-        foreach (Vehicle v in parking)
+        foreach (var item in _handler.ListVehicleTypes())
         {
-            Console.WriteLine(v);
+            Console.WriteLine($"{item.Key}: {item.Count()}");
         }
-
-        foreach (var v in parking.GetVehicleTypes())
-        {
-            Console.WriteLine($"{v.Key}: {v.Count()}.");
-        }
-
-        Console.WriteLine(parking.FindVehicle("123qwe"));
-        Console.WriteLine(parking.Count);
-        parking.RemoveVehicle("123qwe");
-        Console.WriteLine(parking.Count);
-
-        Console.WriteLine(parking.ParkVehicle(new Motorcycle("321ewq", "#123", 2, "Yamaha", 54)));
-
-        Console.WriteLine(parking.ParkVehicle(new Motorcycle("321ewq", "#123", 2, "Yamaha", 54)));
     }
 }

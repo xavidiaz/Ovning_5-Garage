@@ -5,13 +5,15 @@ namespace Ovning_5_Garage;
 public class Garage<T> : IEnumerable<T>
     where T : Vehicle
 {
+    string Name { get; }
     T?[] _slots;
     uint Capacity { get; }
     public int Count { get; private set; }
     bool IsFull => Capacity == Count;
 
-    public Garage(uint capacity)
+    public Garage(string name, uint capacity)
     {
+        Name = name;
         Capacity = capacity;
         _slots = new T[Capacity];
     }
