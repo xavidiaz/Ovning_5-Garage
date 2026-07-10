@@ -1,4 +1,4 @@
-namespace Garage;
+namespace Ovning_5_Garage;
 
 public class Car : Vehicle
 {
